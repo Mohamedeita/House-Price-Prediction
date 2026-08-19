@@ -1,9 +1,11 @@
 [project]
 name = "house-price-prediction"
 version = "1.0.0"
-requires-python = ">=3.12"
+description = "House Price Prediction API"
+requires-python = "==3.12.*"
+
 dependencies = [
-    "fastapi",
+    "fastapi[standard]",
     "uvicorn",
     "pandas",
     "scikit-learn",
