@@ -7,10 +7,10 @@ requires-python = "==3.12.*"
 dependencies = [
     "fastapi[standard]",
     "uvicorn",
-    "pandas",
-    "scikit-learn",
-    "joblib",
-    "numpy"
+    "pandas==3.0.5",
+    "scikit-learn==1.9.0",
+    "joblib==1.5.3",
+    "numpy==2.5.1"
 ]
 
 [tool.fastapi]
