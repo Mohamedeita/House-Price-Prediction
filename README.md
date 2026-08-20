@@ -1,80 +1,75 @@
-# House Price Prediction
+# 🏠 House Price Prediction
 
-An end-to-end Machine Learning web application that predicts house prices based on property characteristics such as location, area, furnishing, bathrooms, parking, floors, and other property features.
+An end-to-end Machine Learning web application that predicts house prices based on property features.
 
-The project combines **Data Analysis, Data Cleaning, Machine Learning, FastAPI, and React** into a complete prediction system.
+The project combines a trained Machine Learning regression model with a **FastAPI backend** and a **React + TypeScript + Vite frontend** to provide an interactive house price prediction experience.
 
 ---
 
-## 📌 Overview
+## 🚀 Live Demo
 
-The goal of this project is to build a machine learning system capable of estimating the price of a house from its property details.
+### Frontend
 
-The project follows a complete ML workflow:
+Run the frontend locally and open the URL provided by Vite, usually:
 
 ```text
-Raw Dataset
-     ↓
-Data Exploration (EDA)
-     ↓
-Data Cleaning & Transformation
-     ↓
-Feature Engineering
-     ↓
-Model Training
-     ↓
-Model Evaluation & Tuning
-     ↓
-Best Model
-     ↓
-FastAPI Backend
-     ↓
+http://localhost:5173
+```
+
+### Backend API
+
+The backend is deployed on Railway:
+
+https://house-price-prediction-production-83d3.up.railway.app
+
+### API Documentation
+
+FastAPI provides interactive API documentation:
+
+https://house-price-prediction-production-83d3.up.railway.app/docs
+
+---
+
+## 📌 Project Overview
+
+The goal of this project is to build a complete Machine Learning application capable of predicting house prices from property information.
+
+The application follows this workflow:
+
+```text
+User
+  ↓
 React Frontend
-     ↓
+  ↓
+FastAPI REST API
+  ↓
+Data Processing
+  ↓
+Trained ML Model
+  ↓
 Predicted House Price
-```
-
-The final application allows the user to enter property information through a web form and receive an estimated house price.
-
----
-
-# 🏗️ Architecture
-
-```text
-                    ┌──────────────────────┐
-                    │      React UI        │
-                    │    Frontend :5173    │
-                    └──────────┬───────────┘
-                               │
-                               │ HTTP POST /predict
-                               ↓
-                    ┌──────────────────────┐
-                    │      FastAPI         │
-                    │    Backend :8000     │
-                    └──────────┬───────────┘
-                               │
-                               ↓
-                    ┌──────────────────────┐
-                    │  ML Preprocessing    │
-                    │      Pipeline        │
-                    └──────────┬───────────┘
-                               │
-                               ↓
-                    ┌──────────────────────┐
-                    │ Random Forest Model  │
-                    │ house_price_model    │
-                    └──────────┬───────────┘
-                               │
-                               ↓
-                    ┌──────────────────────┐
-                    │ Predicted Price      │
-                    │       INR / USD      │
-                    └──────────────────────┘
+  ↓
+Frontend Result
 ```
 
 ---
 
-# 🛠️ Tech Stack
+## ✨ Features
+
+* 🏠 House price prediction
+* 📊 Machine Learning regression model
+* ⚛️ React + TypeScript frontend
+* ⚡ Vite development environment
+* 🐍 FastAPI backend
+* 🔌 REST API integration
+* 🤖 Trained `.pkl` Machine Learning model
+* ☁️ Backend deployment using Railway
+* 📖 Interactive Swagger API documentation
+* 🔄 Frontend connected to the deployed backend
+
+---
+
+## 🛠️ Tech Stack
 
 ### Machine Learning
 
@@ -82,33 +77,24 @@ The final application allows the user to enter property information through a we
 * Pandas
 * NumPy
 * Scikit-learn
-* Matplotlib
-* Seaborn
 * Joblib
-* Jupyter Notebook
 
 ### Backend
 
 * FastAPI
 * Uvicorn
-* Pydantic
-* Pandas
-* Scikit-learn
-* Joblib
+* Python
 
 ### Frontend
 
 * React
 * TypeScript
 * Vite
-* React Router
-* CSS
 
-### Development Tools
+### Deployment
 
-* Git
 * GitHub
-* Git LFS
+* Railway
 
 ---
 
@@ -123,526 +109,290 @@ House-Price-Prediction/
 │   └── requirements.txt
 │
 ├── frontend/
-│   ├── public/
-│   │   └── locations.json
-│   │
 │   ├── src/
 │   │   ├── api/
 │   │   │   └── predictionClient.ts
-│   │   │
 │   │   ├── components/
-│   │   │   └── PredictionForm.tsx
-│   │   │
-│   │   ├── pages/
-│   │   │   ├── HomePage.tsx
-│   │   │   ├── ResultPage.tsx
-│   │   │   └── NotFoundPage.tsx
-│   │   │
-│   │   ├── types/
-│   │   │   └── prediction.ts
-│   │   │
-│   │   ├── App.tsx
-│   │   ├── main.tsx
-│   │   └── index.css
+│   │   └── ...
 │   │
-│   ├── .env.example
+│   ├── public/
+│   ├── .env
 │   ├── package.json
-│   └── package-lock.json
+│   ├── package-lock.json
+│   └── vite.config.ts
 │
-├── notebooks/
-│   ├── 01_Data_Cleaning.ipynb
-│   ├── 02_EDA.ipynb
-│   └── 03_Model_Training.ipynb
-│
-├── screenshots/
-│   ├── home.png
-│   ├── result.png
-│   └── swagger.png
-│
-├── cleaned_house_prices.csv
 ├── .gitignore
 └── README.md
 ```
 
-> Notebook filenames may differ slightly depending on the final repository structure.
-
 ---
 
-# 📊 Dataset
+# ⚙️ Installation & Setup
 
-The project uses an Indian residential real-estate dataset containing approximately **188K property records** and 21 original columns.
+There are two ways to run the project.
 
-The dataset contains information such as:
+## Option 1 — Run the Frontend with the Online Backend
 
-* Property location
-* Price
-* Carpet Area
-* Super Area
-* Property status
-* Transaction type
-* Furnishing
-* Facing
-* Bathrooms
-* Balcony
-* Car Parking
-* Ownership
-* Society
-* Floor information
+This is the easiest way to test the project.
 
-### Dataset Source
-
-The dataset is available on Hugging Face:
-
-[House Prediction Dataset](https://huggingface.co/datasets/bryium/house_prediction?utm_source=chatgpt.com)
-
-The dataset corresponds to the original 187,531-row / 21-column structure used in this project.
-
-### Download Dataset
-
-You can download the dataset from the dataset page above.
-
-For local development, place the downloaded CSV in the project root:
-
-```text
-House-Price-Prediction/
-└── house_prices.csv
-```
-
-The raw dataset is intentionally **not committed to GitHub** because of its large file size.
-
-The processed dataset used for analysis is provided separately as:
-
-```text
-cleaned_house_prices.csv
-```
-
----
-
-# 🧹 Data Preprocessing
-
-The original dataset contains mixed formats, missing values, categorical features, and inconsistent area representations.
-
-The preprocessing pipeline includes:
-
-1. Handling missing values.
-2. Converting property prices into numeric INR values.
-3. Converting area measurements into square feet.
-4. Extracting current floor and total floors.
-5. Converting car parking information into a numeric feature.
-6. Creating binary property features.
-7. Encoding categorical variables.
-8. Handling location information.
-9. Creating `Society_Frequency`.
-10. Removing invalid/extreme records where appropriate.
-
-### Engineered Features
-
-The final model uses features including:
-
-```text
-location
-Status
-Transaction
-Furnishing
-facing
-Ownership
-Bathroom
-Balcony
-Carpet_Area_sqft
-Super_Area_sqft
-Car_Parking_Count
-Current_Floor
-Total_Floors
-Has_Main_Road
-Has_Garden_Park
-Has_Pool
-Society_Frequency
-```
-
----
-
-# 🤖 Machine Learning Model
-
-The final selected model is:
-
-**Random Forest Regressor**
-
-The model is used as a regression model because the target variable is a continuous house price.
-
-The complete preprocessing and model are stored together inside a Scikit-learn Pipeline and exported using Joblib.
-
-```text
-house_price_model.pkl
-```
-
-This allows the FastAPI backend to directly load the complete trained pipeline and make predictions on new property data.
-
----
-
-# 📈 Model Performance
-
-The selected Random Forest model achieved the following results on the test set:
-
-| Metric |         Result |
-| ------ | -------------: |
-| MAE    |   ~898,791 INR |
-| RMSE   | ~2,963,331 INR |
-| R²     |        ~0.9366 |
-
-### Metric Interpretation
-
-**MAE — Mean Absolute Error**
-
-The average absolute difference between the actual and predicted prices is approximately:
-
-```text
-898,791 INR
-```
-
-**RMSE — Root Mean Squared Error**
-
-RMSE gives more weight to larger prediction errors:
-
-```text
-2,963,331 INR
-```
-
-**R² — R-squared**
-
-The model achieved:
-
-```text
-0.9366
-```
-
-which indicates that the model explains approximately **93.66% of the variance** in the target variable on the test set.
-
----
-
-# ⚙️ Backend Setup
-
-## 1. Clone the Repository
+### 1. Clone the repository
 
 ```bash
-git clone https://github.com/Mohamdeita/House-Price-Prediction.git
+git clone https://github.com/Mohamedeita/House-Price-Prediction.git
+```
+
+Move into the project:
+
+```bash
 cd House-Price-Prediction
 ```
 
-> If the repository owner/name changes, use the repository's current GitHub clone URL.
+### 2. Open the frontend folder
 
-## 2. Create a Virtual Environment
-
-Windows:
-
-```powershell
-python -m venv venv
+```bash
+cd frontend
 ```
 
-Activate it:
+### 3. Install dependencies
 
-```powershell
-venv\Scripts\activate
+```bash
+npm install
 ```
 
-## 3. Install Backend Dependencies
+### 4. Configure the API URL
 
-```powershell
+Create a `.env` file inside the `frontend` folder:
+
+```env
+VITE_API_BASE_URL=https://house-price-prediction-production-83d3.up.railway.app
+```
+
+### 5. Start the frontend
+
+```bash
+npm run dev
+```
+
+Vite will provide a local URL, usually:
+
+```text
+http://localhost:5173
+```
+
+Open the URL in your browser.
+
+The frontend will communicate with the deployed Railway backend automatically.
+
+---
+
+# 🐍 Option 2 — Run the Backend Locally
+
+If you want to run the complete application locally, you can also run the FastAPI backend.
+
+### 1. Open a terminal
+
+From the project root:
+
+```bash
 cd backend
+```
+
+### 2. Install Python dependencies
+
+```bash
 pip install -r requirements.txt
 ```
 
-## 4. Run FastAPI
+### 3. Start FastAPI
 
-```powershell
-python -m uvicorn main:app --reload --port 8000
+```bash
+uvicorn main:app --reload
 ```
 
-The backend will be available at:
+The backend will normally run at:
 
 ```text
 http://127.0.0.1:8000
 ```
 
-Swagger API documentation:
+### 4. Open the API documentation
+
+Visit:
 
 ```text
 http://127.0.0.1:8000/docs
 ```
 
----
-
-# 🌐 Frontend Setup
-
-Open another terminal.
-
-From the project root:
-
-```powershell
-cd frontend
-```
-
-Install dependencies:
-
-```powershell
-npm install
-```
-
-Create a `.env` file:
-
-```env
-VITE_API_BASE_URL=http://localhost:8000
-```
-
-Then start the development server:
-
-```powershell
-npm run dev
-```
-
-The frontend will normally be available at:
-
-```text
-http://localhost:5173
-```
-
-Open that address in your browser.
+You can use Swagger UI to test the API endpoints.
 
 ---
 
 # 🔐 Environment Variables
 
-## Backend
+The frontend uses an environment variable to determine which backend API it should communicate with.
 
-The backend currently does not require any secret environment variables.
+Create:
 
-| Variable | Required | Description                      |
-| -------- | -------- | -------------------------------- |
-| —        | No       | Backend uses local configuration |
+```text
+frontend/.env
+```
 
-## Frontend
-
-| Variable            | Required | Example                 | Description         |
-| ------------------- | -------- | ----------------------- | ------------------- |
-| `VITE_API_BASE_URL` | Yes      | `http://localhost:8000` | FastAPI backend URL |
-
-Example:
+and add:
 
 ```env
-VITE_API_BASE_URL=http://localhost:8000
+VITE_API_BASE_URL=https://house-price-prediction-production-83d3.up.railway.app
 ```
+
+### Local Backend
+
+If you want the frontend to communicate with your own local backend instead, change it to:
+
+```env
+VITE_API_BASE_URL=http://127.0.0.1:8000
+```
+
+After changing `.env`, restart the Vite development server.
 
 ---
 
-# 🔌 API Reference
+# 🤖 Machine Learning Model
 
-## GET `/`
-
-Checks whether the API is running.
-
-### Example Response
-
-```json
-{
-  "message": "House Price Prediction API is running"
-}
-```
-
----
-
-## POST `/predict`
-
-Predicts the price of a house from its property information.
-
-### Request Body
-
-```json
-{
-  "location": "bangalore",
-  "Status": "Ready to Move",
-  "Transaction": "Resale",
-  "Furnishing": "Semi-Furnished",
-  "facing": "East",
-  "Ownership": "Freehold",
-  "Bathroom": 2,
-  "Balcony": 1,
-  "Carpet_Area_sqft": 1100,
-  "Super_Area_sqft": 1300,
-  "Car_Parking_Count": 1,
-  "Current_Floor": 2,
-  "Total_Floors": 5,
-  "Has_Main_Road": 1,
-  "Has_Garden_Park": 0,
-  "Has_Pool": 0,
-  "Society_Frequency": 100
-}
-```
-
-### Example Response
-
-```json
-{
-  "predicted_price": 6921825.79
-}
-```
-
-The prediction is returned in **Indian Rupees (INR)**.
-
----
-
-# 🧪 cURL Example
-
-With the FastAPI server running:
-
-```bash
-curl -X POST "http://127.0.0.1:8000/predict" ^
-  -H "Content-Type: application/json" ^
-  -d "{\"location\":\"bangalore\",\"Status\":\"Ready to Move\",\"Transaction\":\"Resale\",\"Furnishing\":\"Semi-Furnished\",\"facing\":\"East\",\"Ownership\":\"Freehold\",\"Bathroom\":2,\"Balcony\":1,\"Carpet_Area_sqft\":1100,\"Super_Area_sqft\":1300,\"Car_Parking_Count\":1,\"Current_Floor\":2,\"Total_Floors\":5,\"Has_Main_Road\":1,\"Has_Garden_Park\":0,\"Has_Pool\":0,\"Society_Frequency\":100}"
-```
-
-Expected response format:
-
-```json
-{
-  "predicted_price": 6921825.79
-}
-```
-
----
-
-# 🖥️ Screenshots
-
-## Home Page
-
-The React frontend provides a form where users enter property details.
-
-![Home Page](screenshots/home.png)
-
----
-
-## Prediction Result
-
-After submitting the form, the application displays the predicted house price.
-
-![Prediction Result](screenshots/result.png)
-
----
-
-## FastAPI Swagger Documentation
-
-The backend provides interactive API documentation through FastAPI Swagger UI.
-
-![Swagger API](screenshots/swagger.png)
-
----
-
-# 🔄 End-to-End Workflow
-
-The complete application works as follows:
-
-```text
-User
-  ↓
-React Form
-  ↓
-POST /predict
-  ↓
-FastAPI
-  ↓
-Pydantic Validation
-  ↓
-Pandas DataFrame
-  ↓
-Preprocessing Pipeline
-  ↓
-Random Forest Regressor
-  ↓
-Predicted Price
-  ↓
-FastAPI JSON Response
-  ↓
-React Result Page
-```
-
----
-
-# ▶️ Run the Complete Project
-
-You need two terminals.
-
-### Terminal 1 — Backend
-
-```powershell
-cd House-Price-Prediction\backend
-venv\Scripts\activate
-python -m uvicorn main:app --reload --port 8000
-```
-
-### Terminal 2 — Frontend
-
-```powershell
-cd House-Price-Prediction\frontend
-npm install
-npm run dev
-```
-
-Then open:
-
-```text
-http://localhost:5173
-```
-
-Enter the property information and click the prediction button.
-
-The application sends the data to FastAPI, the trained model generates a prediction, and the result is displayed on the result page.
-
----
-
-# 🧪 Reproducing the Machine Learning Workflow
-
-The notebooks contain the main machine learning workflow:
-
-```text
-Load Dataset
-     ↓
-Data Inspection
-     ↓
-EDA
-     ↓
-Data Cleaning
-     ↓
-Feature Engineering
-     ↓
-Train/Test Split
-     ↓
-Preprocessing
-     ↓
-Model Training
-     ↓
-Model Evaluation
-     ↓
-Hyperparameter Tuning
-     ↓
-Final Model
-     ↓
-Model Export
-```
-
-The exported model is:
+The application uses a trained regression model stored in:
 
 ```text
 backend/house_price_model.pkl
 ```
 
+The backend loads the trained model using Joblib and uses the submitted property features to generate a price prediction.
+
+The prediction pipeline is:
+
+```text
+Input Features
+      ↓
+Preprocessing
+      ↓
+Feature Transformation
+      ↓
+Trained Regression Model
+      ↓
+Predicted Price
+```
+
 ---
 
-# 📌 Important Notes
+# 🔌 API
 
-* The raw dataset is not stored in the repository because of its large size.
-* The trained model is stored using **Git LFS** because of its large file size.
-* The model predicts prices in Indian Rupees.
-* The frontend converts the displayed prediction to USD for presentation purposes.
-* The exchange rate used by the frontend is for display only and does not affect model predictions.
-* The trained model and preprocessing pipeline must remain compatible with the versions used to train them.
+The backend is implemented using FastAPI.
+
+### Production API
+
+```text
+https://house-price-prediction-production-83d3.up.railway.app
+```
+
+### Interactive Documentation
+
+```text
+https://house-price-prediction-production-83d3.up.railway.app/docs
+```
+
+Swagger UI can be used to inspect and test the available API endpoints.
+
+---
+
+# 🌐 Deployment
+
+The backend is deployed using **Railway**.
+
+Deployment architecture:
+
+```text
+GitHub Repository
+       ↓
+Railway
+       ↓
+FastAPI Backend
+       ↓
+Machine Learning Model
+```
+
+The frontend can communicate with the deployed API through:
+
+```text
+https://house-price-prediction-production-83d3.up.railway.app
+```
+
+---
+
+# 🧪 Testing the Application
+
+To test the application:
+
+1. Start the frontend.
+2. Open the Vite URL.
+3. Enter the required house information.
+4. Click **Predict**.
+5. The frontend sends the data to the FastAPI backend.
+6. The backend processes the input.
+7. The trained model generates the prediction.
+8. The predicted house price is displayed in the frontend.
+
+---
+
+# 📸 Demo
+
+The application provides an interactive interface where users can enter property information and receive a predicted house price.
+
+### Application Flow
+
+```text
+Enter Property Details
+        ↓
+      Predict
+        ↓
+API Request
+        ↓
+Machine Learning Model
+        ↓
+Predicted House Price
+```
+
+---
+
+# 📈 Future Improvements
+
+Possible future improvements include:
+
+* Improve model accuracy through additional feature engineering.
+* Experiment with different regression algorithms.
+* Add model performance metrics to the frontend.
+* Add prediction history.
+* Add data visualization.
+* Add authentication.
+* Deploy the frontend publicly.
+* Add automated testing.
+* Add CI/CD deployment.
+
+---
+
+# 🎯 Learning Objectives
+
+This project demonstrates practical experience with:
+
+* Data preprocessing
+* Feature engineering
+* Regression
+* Machine Learning model training
+* Model serialization
+* REST APIs
+* FastAPI
+* React
+* TypeScript
+* Environment variables
+* API integration
+* Git/GitHub
+* Cloud deployment
 
 ---
 
@@ -650,12 +400,12 @@ backend/house_price_model.pkl
 
 **Mohamed Eita**
 
-Machine Learning / AI Project
+GitHub:
 
-[LinkedIn](https://www.linkedin.com/in/mohamed-eita-581187371)
+https://github.com/Mohamedeita
 
 ---
 
-# 📄 License
+# ⭐ Support
 
-This project is intended for educational and portfolio purposes.
+If you find this project useful, feel free to ⭐ the repository.
